@@ -17,7 +17,7 @@ const Countdown = (props) => {
   useEffect(() => {
     // update every second
     const endDate = moment(date)
-    const interval = setInterval(() => {
+    const intervalId = setInterval(() => {
       const remainingTime = moment.duration(moment().diff(endDate));
       remainingTime
         ? setDateStamp({
@@ -29,10 +29,10 @@ const Countdown = (props) => {
           months: remainingTime.months(),
           years: remainingTime.years()
         })
-        : clearInterval(interval)();
+        : clearInterval(intervalId);
     }, 1000);
     return () => {
-      clearInterval(interval)()
+      clearInterval(intervalId)
     }
   }, [date]);
 
